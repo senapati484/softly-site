@@ -18,7 +18,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { IPhoneMockup } from './IPhoneMockup';
-import { playSoftChime } from '../utils/audio';
+import { playSoftChime, startAmbientSound, stopAmbientSound } from '../utils/audio';
 
 interface AppExperiencePreviewProps {
   onOpenBreatheModal: () => void;
@@ -66,11 +66,13 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
   const toggleSound = (sound: string) => {
     if (activeSound === sound && isPlayingSound) {
       setIsPlayingSound(false);
-      playSoftChime(380, 0.8);
+      stopAmbientSound(0.8);
+      playSoftChime(380, 0.6);
     } else {
       setActiveSound(sound);
       setIsPlayingSound(true);
-      playSoftChime(540, 1.0);
+      startAmbientSound(sound, 0.35);
+      playSoftChime(540, 0.8);
     }
   };
 
