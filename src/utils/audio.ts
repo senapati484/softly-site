@@ -4,7 +4,7 @@
  */
 let audioCtx: AudioContext | null = null;
 
-function getAudioContext(): AudioContext | null {
+export function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!audioCtx) {
     const AudioContextClass =
@@ -15,15 +15,25 @@ function getAudioContext(): AudioContext | null {
     }
   }
   if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
+}
+
+export function unlockAudioContext() {
+  const ctx = getAudioContext();
+  if (ctx && ctx.state === 'suspended') {
+    ctx.resume().catch(() => {});
+  }
 }
 
 export function playSoftChime(frequency = 528, duration = 1.6) {
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
 
     const now = ctx.currentTime;
     const osc = ctx.createOscillator();
@@ -36,7 +46,7 @@ export function playSoftChime(frequency = 528, duration = 1.6) {
 
     // Smooth envelope attack and decay
     gain.gain.setValueAtTime(0.001, now);
-    gain.gain.linearRampToValueAtTime(0.08, now + 0.08);
+    gain.gain.linearRampToValueAtTime(0.12, now + 0.08);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
     osc.connect(gain);
@@ -110,10 +120,14 @@ function createNoiseBuffer(ctx: AudioContext, type: 'pink' | 'brown' | 'white' =
 /**
  * Start a continuous procedural ambient soundscape
  */
-export function startAmbientSound(trackName: string, targetVolume = 0.35) {
+export function startAmbientSound(trackName: string, targetVolume = 0.4) {
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
+
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
 
     // If same track is already playing, return
     if (activeAmbientInstance && activeAmbientInstance.trackName === trackName) {
@@ -121,12 +135,12 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
     }
 
     // Stop current instance smoothly
-    stopAmbientSound(0.5);
+    stopAmbientSound(0.4);
 
     const now = ctx.currentTime;
     const masterGain = ctx.createGain();
     masterGain.gain.setValueAtTime(0.001, now);
-    masterGain.gain.linearRampToValueAtTime(targetVolume, now + 1.2);
+    masterGain.gain.linearRampToValueAtTime(targetVolume, now + 0.8);
     masterGain.connect(ctx.destination);
 
     const nodes: (AudioNode | number)[] = [masterGain];
@@ -141,11 +155,11 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
 
       const lowpass = ctx.createBiquadFilter();
       lowpass.type = 'lowpass';
-      lowpass.frequency.setValueAtTime(1100, now);
+      lowpass.frequency.setValueAtTime(1200, now);
 
       const highpass = ctx.createBiquadFilter();
       highpass.type = 'highpass';
-      highpass.frequency.setValueAtTime(180, now);
+      highpass.frequency.setValueAtTime(160, now);
 
       noiseSource.connect(lowpass);
       lowpass.connect(highpass);
@@ -161,11 +175,11 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
 
       const patterFilter = ctx.createBiquadFilter();
       patterFilter.type = 'bandpass';
-      patterFilter.frequency.setValueAtTime(2400, now);
+      patterFilter.frequency.setValueAtTime(2600, now);
       patterFilter.Q.setValueAtTime(1.5, now);
 
       const patterGain = ctx.createGain();
-      patterGain.gain.setValueAtTime(0.18, now);
+      patterGain.gain.setValueAtTime(0.22, now);
 
       patterSource.connect(patterFilter);
       patterFilter.connect(patterGain);
@@ -182,14 +196,14 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
 
       const bandpass = ctx.createBiquadFilter();
       bandpass.type = 'bandpass';
-      bandpass.frequency.setValueAtTime(320, now);
-      bandpass.Q.setValueAtTime(3.0, now);
+      bandpass.frequency.setValueAtTime(360, now);
+      bandpass.Q.setValueAtTime(2.8, now);
 
       // LFO for slow wind gusts
       const lfo = ctx.createOscillator();
       lfo.frequency.setValueAtTime(0.18, now); // slow breath cycle
       const lfoGain = ctx.createGain();
-      lfoGain.gain.setValueAtTime(220, now);
+      lfoGain.gain.setValueAtTime(240, now);
 
       lfo.connect(lfoGain);
       lfoGain.connect(bandpass.frequency);
@@ -210,10 +224,10 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
 
       const roomFilter = ctx.createBiquadFilter();
       roomFilter.type = 'lowpass';
-      roomFilter.frequency.setValueAtTime(380, now);
+      roomFilter.frequency.setValueAtTime(420, now);
 
       const roomGain = ctx.createGain();
-      roomGain.gain.setValueAtTime(0.25, now);
+      roomGain.gain.setValueAtTime(0.3, now);
 
       roomSource.connect(roomFilter);
       roomFilter.connect(roomGain);
@@ -226,14 +240,14 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
       drone.type = 'sine';
       drone.frequency.setValueAtTime(108, now); // A2 fundamental
       const droneGain = ctx.createGain();
-      droneGain.gain.setValueAtTime(0.04, now);
+      droneGain.gain.setValueAtTime(0.05, now);
 
       drone.connect(droneGain);
       droneGain.connect(masterGain);
       drone.start(now);
       nodes.push(drone, droneGain);
 
-      // Periodic antique clock tick every 1.5s
+      // Periodic antique clock tick every 1.4s
       const tickInterval = window.setInterval(() => {
         try {
           if (!activeAmbientInstance) return;
@@ -245,7 +259,7 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
           tickOsc.frequency.setValueAtTime(900, tNow);
           tickOsc.frequency.exponentialRampToValueAtTime(120, tNow + 0.04);
 
-          tickGain.gain.setValueAtTime(0.06, tNow);
+          tickGain.gain.setValueAtTime(0.08, tNow);
           tickGain.gain.exponentialRampToValueAtTime(0.0001, tNow + 0.04);
 
           tickOsc.connect(tickGain);
@@ -273,7 +287,7 @@ export function startAmbientSound(trackName: string, targetVolume = 0.35) {
 /**
  * Stop currently playing ambient soundscape with smooth fade-out
  */
-export function stopAmbientSound(fadeDuration = 0.8) {
+export function stopAmbientSound(fadeDuration = 0.5) {
   if (!activeAmbientInstance) return;
 
   try {
