@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Sparkles,
   Wind,
@@ -11,7 +11,11 @@ import {
   Pause,
   Heart,
   Sun,
-  Feather
+  Feather,
+  Bell,
+  Smartphone,
+  Check,
+  ShieldCheck
 } from 'lucide-react';
 import { IPhoneMockup } from './IPhoneMockup';
 import { playSoftChime } from '../utils/audio';
@@ -20,12 +24,44 @@ interface AppExperiencePreviewProps {
   onOpenBreatheModal: () => void;
 }
 
+interface NotificationDemo {
+  id: string;
+  title: string;
+  message: string;
+  tag: string;
+}
+
+const NOTIFICATIONS: NotificationDemo[] = [
+  {
+    id: 'unplug',
+    title: '🌿 Unplug Window Active',
+    message: 'Time for a 5-minute pause without screens. Step outside or brew warm tea.',
+    tag: 'Mindful Break',
+  },
+  {
+    id: 'pebble',
+    title: '📖 Morning Pebble',
+    message: 'Notice the way the light hits the floorboards. Simply be in today.',
+    tag: 'Daily Prompt',
+  },
+  {
+    id: 'dusk',
+    title: '🌙 Sunset Shift',
+    message: 'Evening sanctuary engaged. Screen shifting to warm candle amber.',
+    tag: 'Bedtime',
+  },
+];
+
 export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOpenBreatheModal }) => {
   const [activeSound, setActiveSound] = useState<string>('Rain on Cedar');
   const [isPlayingSound, setIsPlayingSound] = useState(false);
   const [amberLevel, setAmberLevel] = useState(85);
   const [breathePattern, setBreathePattern] = useState<'4-7-8' | 'box' | 'gentle'>('4-7-8');
   const [isBreathingActive, setIsBreathingActive] = useState(false);
+
+  // Notification & OS Mode States
+  const [selectedOS, setSelectedOS] = useState<'ios' | 'android'>('ios');
+  const [activeNotification, setActiveNotification] = useState<NotificationDemo | null>(null);
 
   const toggleSound = (sound: string) => {
     if (activeSound === sound && isPlayingSound) {
@@ -38,6 +74,15 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
     }
   };
 
+  const triggerNotification = (notif: NotificationDemo) => {
+    setActiveNotification(notif);
+    playSoftChime(528, 1.2);
+    // Auto dismiss after 7 seconds if not manually closed
+    setTimeout(() => {
+      setActiveNotification((curr) => (curr?.id === notif.id ? null : curr));
+    }, 7000);
+  };
+
   return (
     <section id="experience" className="py-20 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       {/* Background ambient lighting halos */}
@@ -46,18 +91,115 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[600px] sm:h-[900px] bg-gradient-to-tr from-[#FFE4E1]/30 via-[#EFEDF4]/40 to-[#E8EFE8]/30 rounded-full blur-3xl -z-10 pointer-events-none"
       />
 
-      <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
+      <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
         <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">
-          Interface Design
+          Dynamic Island & Gentle Notifications
         </span>
         <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-4">
-          Tactile, gentle, and{' '}
-          <span className="font-cursive text-4xl sm:text-6xl text-[#e8908a]">unhurried</span>
+          Unobtrusive, calm, and{' '}
+          <span className="font-cursive text-4xl sm:text-6xl text-[#e8908a]">respectful</span>
         </h2>
-        <p className="max-w-xl mx-auto text-base sm:text-lg text-[#78716C]">
-          No algorithmic feeds or red notification dots. Every screen in Softly is designed to feel like stepping into a sunlit cedar sanctuary.
+        <p className="max-w-xl mx-auto text-base sm:text-lg text-[#78716C] mb-8">
+          No flashing red badges or urgency prompts. See how Softly communicates through iOS Dynamic Island live activities and Android ambient lockscreens.
         </p>
+
+        {/* Interactive Notification Testing Toolbar */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto p-2 rounded-2xl sm:rounded-full bg-white/90 backdrop-blur-md border border-stone-200 shadow-sm">
+          <div className="flex items-center gap-1.5 px-3 text-xs font-bold uppercase tracking-wider text-stone-400">
+            <Bell className="w-3.5 h-3.5 text-[#e07a74]" />
+            <span>Test Alerts:</span>
+          </div>
+
+          {NOTIFICATIONS.map((notif) => (
+            <button
+              key={notif.id}
+              onClick={() => triggerNotification(notif)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all cursor-pointer ${
+                activeNotification?.id === notif.id
+                  ? 'bg-stone-900 text-white border-stone-900 shadow-xs'
+                  : 'bg-[#FDFCF8] text-stone-700 border-stone-200 hover:bg-stone-100'
+              }`}
+            >
+              {notif.tag}
+            </button>
+          ))}
+
+          {/* OS Switcher */}
+          <div className="flex items-center bg-stone-100 p-1 rounded-full border border-stone-200/80 ml-1">
+            <button
+              onClick={() => {
+                setSelectedOS('ios');
+                playSoftChime(440, 0.4);
+              }}
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                selectedOS === 'ios'
+                  ? 'bg-white text-stone-900 shadow-2xs'
+                  : 'text-stone-500 hover:text-stone-800'
+              }`}
+            >
+              iOS Dynamic Island
+            </button>
+            <button
+              onClick={() => {
+                setSelectedOS('android');
+                playSoftChime(440, 0.4);
+              }}
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                selectedOS === 'android'
+                  ? 'bg-white text-stone-900 shadow-2xs'
+                  : 'text-stone-500 hover:text-stone-800'
+              }`}
+            >
+              Android Material You
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* ========================================================= */}
+      {/* ANDROID NOTIFICATION BANNER (When Android selected)       */}
+      {/* ========================================================= */}
+      <AnimatePresence>
+        {selectedOS === 'android' && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            className="max-w-md mx-auto mb-10 bg-[#292524] text-white p-4 rounded-3xl border border-stone-700 shadow-xl"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-[#FFE4E1] flex items-center justify-center text-[10px] text-[#8A3B36] font-bold">
+                  S
+                </div>
+                <span className="text-xs font-medium text-stone-300">Softly • Calm Service</span>
+              </div>
+              <span className="text-[10px] text-stone-400 font-mono">Just now</span>
+            </div>
+            <h4 className="text-sm font-semibold text-stone-100">
+              {activeNotification?.title || '🌿 Living Room Sanctuary Active'}
+            </h4>
+            <p className="text-xs text-stone-300 mt-1 leading-relaxed">
+              {activeNotification?.message ||
+                'Unplug timer active: Your afternoon space is calm and free of notification urgency.'}
+            </p>
+            <div className="flex gap-2 mt-3 pt-2 border-t border-stone-800">
+              <button
+                onClick={() => setActiveNotification(null)}
+                className="px-3 py-1 rounded-xl bg-stone-800 text-[11px] font-medium text-stone-200 hover:bg-stone-700"
+              >
+                Dismiss
+              </button>
+              <button
+                onClick={onOpenBreatheModal}
+                className="px-3 py-1 rounded-xl bg-[#FFE4E1] text-[11px] font-semibold text-[#8A3B36] hover:bg-[#FFB7B2]"
+              >
+                Start Breathwork
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 3 Side-by-Side iPhone 16 Pro Mockups */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto pb-12">
@@ -73,7 +215,14 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           whileHover={{ y: -8, scale: 1.01 }}
           className="w-full max-w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
         >
-          <IPhoneMockup theme="sage" className="h-[670px]">
+          <IPhoneMockup
+            theme="sage"
+            className="h-[670px]"
+            activeSound={activeSound}
+            isPlayingSound={isPlayingSound}
+            bannerNotification={activeNotification}
+            onDismissNotification={() => setActiveNotification(null)}
+          >
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto px-4 pt-2 space-y-3 pb-16 no-scrollbar">
               {/* Screen Header */}
@@ -196,7 +345,15 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           whileHover={{ scale: 1.02 }}
           className="w-full max-w-[350px] z-20 relative shrink-0"
         >
-          <IPhoneMockup theme="cream" className="h-[710px]">
+          <IPhoneMockup
+            theme="cream"
+            className="h-[710px]"
+            activeSound={activeSound}
+            isPlayingSound={isPlayingSound}
+            isBreathingActive={isBreathingActive}
+            bannerNotification={activeNotification}
+            onDismissNotification={() => setActiveNotification(null)}
+          >
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto px-4 pt-2 space-y-3.5 pb-16 no-scrollbar">
               {/* Header */}
@@ -345,7 +502,14 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           whileHover={{ y: -8, scale: 1.01 }}
           className="w-full max-w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
         >
-          <IPhoneMockup theme="lavender" className="h-[670px]">
+          <IPhoneMockup
+            theme="lavender"
+            className="h-[670px]"
+            activeSound={activeSound}
+            isPlayingSound={isPlayingSound}
+            bannerNotification={activeNotification}
+            onDismissNotification={() => setActiveNotification(null)}
+          >
             {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto px-4 pt-2 space-y-3 pb-16 no-scrollbar">
               {/* Header */}
