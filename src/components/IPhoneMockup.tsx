@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 import { Wifi, Volume2, Wind, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -33,8 +35,8 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
     theme === 'sage'
       ? 'bg-[#E8EFE8]'
       : theme === 'lavender'
-      ? 'bg-[#EFEDF4]'
-      : 'bg-[#FDFCF8]';
+        ? 'bg-[#EFEDF4]'
+        : 'bg-[#FDFCF8]';
 
   return (
     <div className={`relative select-none ${className}`}>
@@ -64,7 +66,7 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
       <div className="w-full h-full rounded-[52px] bg-gradient-to-b from-[#383330] via-[#1E1B19] to-[#12100F] p-[10px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.08)_inset]">
         {/* Inner Black Screen Bezel */}
         <div className="w-full h-full rounded-[44px] bg-[#0A0A09] p-[3px] shadow-[0_0_0_1px_rgba(0,0,0,0.9)] flex flex-col justify-between overflow-hidden relative">
-          
+
           {/* ============================================================ */}
           {/* DISPLAY CANVAS                                              */}
           {/* ============================================================ */}
@@ -83,15 +85,14 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
               {/* ============================================================ */}
               <div
                 onClick={() => setIsIslandExpanded(!isIslandExpanded)}
-                className={`transition-all duration-300 ease-out bg-[#000000] text-white rounded-full flex items-center justify-between cursor-pointer shadow-md border border-white/10 z-40 ${
-                  bannerNotification
+                className={`transition-all duration-300 ease-out bg-[#000000] text-white rounded-full flex items-center justify-between cursor-pointer shadow-md border border-white/10 z-40 ${bannerNotification
                     ? 'w-[210px] h-[32px] px-3'
                     : isPlayingSound
-                    ? 'w-[155px] h-[26px] px-2.5'
-                    : isBreathingActive
-                    ? 'w-[145px] h-[26px] px-2.5'
-                    : 'w-[80px] h-[24px] px-2'
-                }`}
+                      ? 'w-[155px] h-[26px] px-2.5'
+                      : isBreathingActive
+                        ? 'w-[145px] h-[26px] px-2.5'
+                        : 'w-[80px] h-[24px] px-2'
+                  }`}
               >
                 {/* Left Live Content */}
                 {bannerNotification ? (

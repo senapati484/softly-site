@@ -379,7 +379,7 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
                   <span>Stillness & Stress Relief</span>
                 </div>
                 <h3 className="text-2xl font-light text-[#292524]">
-                  Good afternoon, <span className="font-cursive text-2xl text-[#e07a74]">Elena</span>
+                  Good afternoon, <span className="font-cursive text-3xl sm:text-4xl text-[#e8908a] inline-block font-normal transform -rotate-2">Elena</span>
                 </h3>
                 <p className="text-xs text-stone-500">Your space is calm and ready.</p>
               </div>
