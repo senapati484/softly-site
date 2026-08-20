@@ -1,0 +1,6 @@
+{
+  "name": "Softly",
+  "description": "A 'Softly' themed mobile-first landing page for a digital wellness app using warm desaturated pastels, tactile grain, and fluid mindful pacing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
