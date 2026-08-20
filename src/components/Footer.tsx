@@ -10,9 +10,11 @@ export const Footer: React.FC = () => {
         {/* Brand Column */}
         <div className="space-y-2 flex flex-col items-center md:items-start">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full bg-[#FFB7B2] flex items-center justify-center">
-              <span className="w-2 h-2 rounded-full bg-white"></span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Softly Logo"
+              className="w-7 h-7 rounded-full object-cover border border-stone-200/60 shadow-2xs"
+            />
             <span className="text-lg font-medium text-[#292524] tracking-tight">Softly</span>
           </div>
           <p className="max-w-xs text-stone-400 leading-relaxed text-xs">

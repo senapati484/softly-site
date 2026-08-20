@@ -59,10 +59,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBreatheModal, onScrollToWa
             }}
             className="flex items-center gap-2.5 group cursor-pointer"
           >
-            {/* Small circular logo: Coral #FFB7B2 with white dot */}
-            <div className="w-8 h-8 rounded-full bg-[#FFB7B2] flex items-center justify-center shadow-xs transition-transform duration-300 group-hover:scale-105">
-              <span className="w-2.5 h-2.5 rounded-full bg-white transition-transform duration-300 group-hover:scale-125"></span>
-            </div>
+            {/* Softly App Logo */}
+            <img
+              src="/logo.png"
+              alt="Softly Logo"
+              className="w-8 h-8 rounded-full object-cover shadow-xs transition-transform duration-300 group-hover:scale-105 border border-stone-200/60"
+            />
             <div className="flex items-baseline gap-1">
               <span className="text-[17px] font-medium tracking-tight text-[#292524]">Softly</span>
               <span className="text-[11px] uppercase tracking-wider text-stone-400 font-medium hidden sm:inline-block">app</span>
