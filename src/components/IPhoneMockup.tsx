@@ -74,9 +74,9 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
             className={`w-full h-full rounded-[41px] ${bgClass} text-[#292524] flex flex-col justify-between overflow-hidden relative border border-stone-200/50`}
           >
             {/* Top Status Bar */}
-            <div className="pt-2.5 px-6 flex items-center justify-between z-30 shrink-0 select-none relative">
+            <div className="pt-2.5 px-3.5 sm:px-5 flex items-center justify-between z-30 shrink-0 select-none relative">
               {/* Clock */}
-              <span className="text-[12px] font-semibold tracking-tight text-stone-800 font-sans w-8">
+              <span className="text-[11px] sm:text-[12px] font-semibold tracking-tight text-stone-800 font-sans w-7 sm:w-8 shrink-0">
                 9:41
               </span>
 
@@ -85,34 +85,35 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
               {/* ============================================================ */}
               <div
                 onClick={() => setIsIslandExpanded(!isIslandExpanded)}
-                className={`transition-all duration-300 ease-out bg-[#000000] text-white rounded-full flex items-center justify-between cursor-pointer shadow-md border border-white/10 z-40 ${bannerNotification
-                    ? 'w-[210px] h-[32px] px-3'
+                className={`transition-all duration-300 ease-out bg-[#000000] text-white rounded-full flex items-center justify-between cursor-pointer shadow-md border border-white/10 z-40 ${
+                  bannerNotification
+                    ? 'w-[170px] sm:w-[200px] h-[30px] sm:h-[32px] px-2.5 sm:px-3'
                     : isPlayingSound
-                      ? 'w-[155px] h-[26px] px-2.5'
+                      ? 'w-[130px] sm:w-[155px] h-[24px] sm:h-[26px] px-2 sm:px-2.5'
                       : isBreathingActive
-                        ? 'w-[145px] h-[26px] px-2.5'
-                        : 'w-[80px] h-[24px] px-2'
-                  }`}
+                        ? 'w-[120px] sm:w-[145px] h-[24px] sm:h-[26px] px-2 sm:px-2.5'
+                        : 'w-[70px] sm:w-[80px] h-[22px] sm:h-[24px] px-2'
+                }`}
               >
                 {/* Left Live Content */}
                 {bannerNotification ? (
                   <div className="flex items-center gap-1.5 overflow-hidden">
                     <span className="text-xs">🌿</span>
-                    <span className="text-[10px] font-medium truncate max-w-[130px] text-stone-200">
+                    <span className="text-[9.5px] sm:text-[10px] font-medium truncate max-w-[100px] sm:max-w-[130px] text-stone-200">
                       {bannerNotification.title}
                     </span>
                   </div>
                 ) : isPlayingSound ? (
                   <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFB7B2] animate-ping" />
-                    <span className="text-[9.5px] font-medium text-stone-200 truncate max-w-[85px]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFB7B2] animate-ping shrink-0" />
+                    <span className="text-[9px] sm:text-[9.5px] font-medium text-stone-200 truncate max-w-[70px] sm:max-w-[85px]">
                       {activeSound || 'Rain on Cedar'}
                     </span>
                   </div>
                 ) : isBreathingActive ? (
                   <div className="flex items-center gap-1.5">
-                    <Wind className="w-3 h-3 text-[#FFB7B2] animate-pulse" />
-                    <span className="text-[9.5px] font-medium text-stone-200">
+                    <Wind className="w-3 h-3 text-[#FFB7B2] animate-pulse shrink-0" />
+                    <span className="text-[9px] sm:text-[9.5px] font-medium text-stone-200">
                       Inhale 4s
                     </span>
                   </div>
@@ -137,22 +138,22 @@ export const IPhoneMockup: React.FC<IPhoneMockupProps> = ({
               </div>
 
               {/* Status Icons: Cellular, Wifi, Battery */}
-              <div className="flex items-center gap-1.5 text-stone-800 w-12 justify-end">
+              <div className="flex items-center gap-1 sm:gap-1.5 text-stone-800 w-10 sm:w-12 justify-end shrink-0">
                 {/* 4 Cellular Signal Bars */}
                 <div className="flex items-end gap-[1.5px] h-3">
-                  <div className="w-[2.5px] h-[3px] bg-stone-800 rounded-2xs" />
-                  <div className="w-[2.5px] h-[5.5px] bg-stone-800 rounded-2xs" />
-                  <div className="w-[2.5px] h-[8px] bg-stone-800 rounded-2xs" />
-                  <div className="w-[2.5px] h-[11px] bg-stone-800 rounded-2xs" />
+                  <div className="w-[2px] sm:w-[2.5px] h-[3px] bg-stone-800 rounded-2xs" />
+                  <div className="w-[2px] sm:w-[2.5px] h-[5.5px] bg-stone-800 rounded-2xs" />
+                  <div className="w-[2px] sm:w-[2.5px] h-[8px] bg-stone-800 rounded-2xs" />
+                  <div className="w-[2px] sm:w-[2.5px] h-[11px] bg-stone-800 rounded-2xs" />
                 </div>
                 {/* Wifi */}
-                <Wifi className="w-3.5 h-3.5 stroke-[2.2]" />
+                <Wifi className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[2.2]" />
                 {/* Battery */}
                 <div className="flex items-center">
-                  <div className="w-[18px] h-[9.5px] rounded-[3px] border border-stone-800 p-[1.5px] flex items-center">
+                  <div className="w-[16px] sm:w-[18px] h-[8.5px] sm:h-[9.5px] rounded-[3px] border border-stone-800 p-[1.5px] flex items-center">
                     <div className="w-full h-full bg-stone-800 rounded-[1.5px]" />
                   </div>
-                  <div className="w-[1.5px] h-[3.5px] bg-stone-800 rounded-r-2xs -ml-[0.5px]" />
+                  <div className="w-[1.5px] h-[3px] sm:h-[3.5px] bg-stone-800 rounded-r-2xs -ml-[0.5px]" />
                 </div>
               </div>
             </div>

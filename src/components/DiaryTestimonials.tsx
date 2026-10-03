@@ -12,7 +12,7 @@ const testimonials: TestimonialItem[] = [
     author: 'Maya Lin',
     city: 'San Francisco',
     savedHours: '12 hrs reclaimed weekly',
-    rotationClass: 'rotate-[-1deg]',
+    rotationClass: 'md:rotate-[-1deg]',
   },
   {
     id: 't2',
@@ -21,7 +21,7 @@ const testimonials: TestimonialItem[] = [
     author: 'Julian Vance',
     city: 'London',
     savedHours: 'Deep focus restored',
-    rotationClass: 'rotate-[1deg]',
+    rotationClass: 'md:rotate-[1deg]',
   },
   {
     id: 't3',
@@ -30,7 +30,7 @@ const testimonials: TestimonialItem[] = [
     author: 'Hannah Davies',
     city: 'Melbourne',
     savedHours: 'Screen time cut by 55%',
-    rotationClass: 'rotate-[1deg]',
+    rotationClass: 'md:rotate-[1deg]',
   },
   {
     id: 't4',
@@ -39,13 +39,13 @@ const testimonials: TestimonialItem[] = [
     author: 'Kiran Patel',
     city: 'Toronto',
     savedHours: 'Peaceful evenings',
-    rotationClass: 'rotate-[-1deg]',
+    rotationClass: 'md:rotate-[-1deg]',
   },
 ];
 
 export const DiaryTestimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 px-4 sm:px-6 relative bg-[#FAF8F3]/70 border-t border-stone-200/50">
+    <section id="testimonials" className="py-20 sm:py-28 px-4 sm:px-6 relative bg-[#FAF8F3]/70 border-t border-stone-200/50 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
@@ -72,7 +72,7 @@ export const DiaryTestimonials: React.FC = () => {
               transition={{ duration: 0.7, delay: idx * 0.1 }}
               whileHover={{ rotate: 0, scale: 1.015 }}
               onMouseEnter={() => playSoftChime(480 + idx * 30, 0.4)}
-              className={`bg-white rounded-3xl sm:rounded-[2rem] p-7 sm:p-8 border border-stone-200/60 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] transition-all duration-300 ${item.rotationClass} hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between`}
+              className={`bg-white rounded-3xl sm:rounded-[2rem] p-6 sm:p-8 border border-stone-200/60 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] transition-all duration-300 ${item.rotationClass} hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between`}
             >
               {/* Note Header / Meta */}
               <div>

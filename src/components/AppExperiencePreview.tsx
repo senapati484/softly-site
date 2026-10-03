@@ -106,53 +106,55 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
         </p>
 
         {/* Interactive Notification Testing Toolbar */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto p-2 rounded-2xl sm:rounded-full bg-white/90 backdrop-blur-md border border-stone-200 shadow-sm">
-          <div className="flex items-center gap-1.5 px-3 text-xs font-bold uppercase tracking-wider text-stone-400">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-2xl mx-auto p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-white/90 backdrop-blur-md border border-stone-200/90 shadow-xs">
+          <div className="flex items-center gap-1.5 px-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-400">
             <Bell className="w-3.5 h-3.5 text-[#e07a74]" />
-            <span>Test Alerts:</span>
+            <span>Alerts:</span>
           </div>
 
-          {NOTIFICATIONS.map((notif) => (
-            <button
-              key={notif.id}
-              onClick={() => triggerNotification(notif)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all cursor-pointer ${
-                activeNotification?.id === notif.id
-                  ? 'bg-stone-900 text-white border-stone-900 shadow-xs'
-                  : 'bg-[#FDFCF8] text-stone-700 border-stone-200 hover:bg-stone-100'
-              }`}
-            >
-              {notif.tag}
-            </button>
-          ))}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+            {NOTIFICATIONS.map((notif) => (
+              <button
+                key={notif.id}
+                onClick={() => triggerNotification(notif)}
+                className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium border transition-all cursor-pointer ${
+                  activeNotification?.id === notif.id
+                    ? 'bg-stone-900 text-white border-stone-900 shadow-xs'
+                    : 'bg-[#FDFCF8] text-stone-700 border-stone-200 hover:bg-stone-100'
+                }`}
+              >
+                {notif.tag}
+              </button>
+            ))}
+          </div>
 
           {/* OS Switcher */}
-          <div className="flex items-center bg-stone-100 p-1 rounded-full border border-stone-200/80 ml-1">
+          <div className="flex items-center bg-stone-100 p-0.5 sm:p-1 rounded-full border border-stone-200/80">
             <button
               onClick={() => {
                 setSelectedOS('ios');
                 playSoftChime(440, 0.4);
               }}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+              className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold transition-all ${
                 selectedOS === 'ios'
                   ? 'bg-white text-stone-900 shadow-2xs'
                   : 'text-stone-500 hover:text-stone-800'
               }`}
             >
-              iOS Dynamic Island
+              iOS Island
             </button>
             <button
               onClick={() => {
                 setSelectedOS('android');
                 playSoftChime(440, 0.4);
               }}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+              className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold transition-all ${
                 selectedOS === 'android'
                   ? 'bg-white text-stone-900 shadow-2xs'
                   : 'text-stone-500 hover:text-stone-800'
               }`}
             >
-              Android Material You
+              Android
             </button>
           </div>
         </div>
@@ -204,7 +206,7 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
       </AnimatePresence>
 
       {/* 3 Side-by-Side iPhone 16 Pro Mockups */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-6 max-w-7xl mx-auto pb-12">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-4 xl:gap-6 max-w-7xl mx-auto pb-12">
         
         {/* ========================================================= */}
         {/* LEFT IPHONE: Morning Pebble (Reflections & Soundscapes)    */}
@@ -215,11 +217,11 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
           whileHover={{ y: -8, scale: 1.01 }}
-          className="w-full max-w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
+          className="w-full max-w-[290px] sm:max-w-[320px] lg:w-[280px] xl:w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
         >
           <IPhoneMockup
             theme="sage"
-            className="h-[670px]"
+            className="h-[630px] xl:h-[670px]"
             activeSound={activeSound}
             isPlayingSound={isPlayingSound}
             bannerNotification={activeNotification}
@@ -345,11 +347,11 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           whileHover={{ scale: 1.02 }}
-          className="w-full max-w-[350px] z-20 relative shrink-0"
+          className="w-full max-w-[310px] sm:max-w-[350px] lg:w-[310px] xl:w-[350px] z-20 relative shrink-0"
         >
           <IPhoneMockup
             theme="cream"
-            className="h-[710px]"
+            className="h-[660px] xl:h-[710px]"
             activeSound={activeSound}
             isPlayingSound={isPlayingSound}
             isBreathingActive={isBreathingActive}
@@ -502,11 +504,11 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
           whileHover={{ y: -8, scale: 1.01 }}
-          className="w-full max-w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
+          className="w-full max-w-[290px] sm:max-w-[320px] lg:w-[280px] xl:w-[320px] lg:translate-y-10 transition-all duration-300 relative group shrink-0"
         >
           <IPhoneMockup
             theme="lavender"
-            className="h-[670px]"
+            className="h-[630px] xl:h-[670px]"
             activeSound={activeSound}
             isPlayingSound={isPlayingSound}
             bannerNotification={activeNotification}
