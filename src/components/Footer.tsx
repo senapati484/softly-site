@@ -4,8 +4,8 @@ import { playSoftChime } from '../utils/audio';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full py-16 px-4 sm:px-6 bg-[#FDFCF8] border-t border-stone-200/60 text-xs text-stone-500">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+    <footer className="w-full py-8 sm:py-12 md:py-14 px-4 sm:px-6 bg-[#FDFCF8] border-t border-stone-200/60 text-xs text-stone-500">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 md:gap-8 text-center md:text-left">
         
         {/* Brand Column */}
         <div className="space-y-2 flex flex-col items-center md:items-start">

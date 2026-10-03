@@ -47,13 +47,13 @@ export const FaqAccordion: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 px-4 sm:px-6 max-w-4xl mx-auto">
-      <div className="text-center mb-14 sm:mb-16">
-        <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+    <section id="faq" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto">
+      <div className="text-center mb-7 sm:mb-12">
+        <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1.5">
           <HelpCircle className="w-3.5 h-3.5 text-[#FFB7B2]" />
           <span>Curious Inquiries</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-2.5 sm:mb-4">
           Common{' '}
           <span className="font-cursive text-4xl sm:text-6xl text-[#FFB7B2]">questions</span>
         </h2>
@@ -62,7 +62,7 @@ export const FaqAccordion: React.FC = () => {
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-3.5">
         {faqs.map((faq) => {
           const isOpen = openId === faq.id;
 
@@ -71,17 +71,17 @@ export const FaqAccordion: React.FC = () => {
               key={faq.id}
               className="bg-white rounded-2xl border border-stone-100/90 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.03)] overflow-hidden transition-all duration-300 hover:border-stone-200"
             >
-              {/* Header: 24px padding, 500 weight text, plus icon rotating 45 deg */}
+              {/* Header: responsive padding, 500 weight text */}
               <button
                 id={`faq-toggle-${faq.id}`}
                 onClick={() => toggleItem(faq.id)}
-                className="w-full p-6 text-left flex items-center justify-between gap-4 font-medium text-[#292524] text-base sm:text-lg cursor-pointer select-none group"
+                className="w-full p-4 sm:p-5 md:p-6 text-left flex items-center justify-between gap-4 font-medium text-[#292524] text-base sm:text-lg cursor-pointer select-none group"
               >
                 <span className="group-hover:text-stone-700 transition-colors">
                   {faq.question}
                 </span>
                 <span
-                  className={`w-8 h-8 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center shrink-0 text-stone-600 transition-transform duration-300 ease-in-out ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center shrink-0 text-stone-600 transition-transform duration-300 ease-in-out ${
                     isOpen ? 'rotate-45 bg-[#FFB7B2]/30 text-[#292524] border-[#FFB7B2]/40' : 'group-hover:bg-stone-100'
                   }`}
                 >
@@ -89,7 +89,7 @@ export const FaqAccordion: React.FC = () => {
                 </span>
               </button>
 
-              {/* Content: Transition height 0 to auto duration-500ms ease-in-out */}
+              {/* Content */}
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
@@ -100,7 +100,7 @@ export const FaqAccordion: React.FC = () => {
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="pb-6 px-6 pt-0 text-sm sm:text-base text-[#78716C] leading-relaxed">
+                    <div className="pb-4 px-4 sm:pb-5 sm:px-5 md:pb-6 md:px-6 pt-0 text-sm sm:text-base text-[#78716C] leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>

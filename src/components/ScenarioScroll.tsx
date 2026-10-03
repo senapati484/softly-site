@@ -60,15 +60,15 @@ export const ScenarioScroll: React.FC = () => {
   };
 
   return (
-    <section id="scenarios" className="py-16 sm:py-24 overflow-hidden border-t border-b border-stone-200/40 bg-[#FBF9F4]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <section id="scenarios" className="py-10 sm:py-16 md:py-20 overflow-hidden border-t border-b border-stone-200/40 bg-[#FBF9F4]/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-5 sm:mb-7 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">
+          <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1.5 block">
             Everyday Rhythms
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#292524] tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-[#292524] tracking-tight">
             How your day feels with{' '}
-            <span className="font-cursive text-4xl sm:text-5xl text-[#FFB7B2]">Softly</span>
+            <span className="font-cursive text-3xl sm:text-5xl text-[#FFB7B2]">Softly</span>
           </h2>
         </div>
 
@@ -77,16 +77,16 @@ export const ScenarioScroll: React.FC = () => {
           <button
             onClick={() => scrollBy(-320)}
             aria-label="Scroll left"
-            className="w-10 h-10 rounded-full bg-white border border-stone-200/80 flex items-center justify-center text-stone-600 hover:bg-stone-50 hover:text-stone-900 active:scale-95 transition-all shadow-xs cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-stone-200/80 flex items-center justify-center text-stone-600 hover:bg-stone-50 hover:text-stone-900 active:scale-95 transition-all shadow-xs cursor-pointer"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <button
             onClick={() => scrollBy(320)}
             aria-label="Scroll right"
-            className="w-10 h-10 rounded-full bg-white border border-stone-200/80 flex items-center justify-center text-stone-600 hover:bg-stone-50 hover:text-stone-900 active:scale-95 transition-all shadow-xs cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-stone-200/80 flex items-center justify-center text-stone-600 hover:bg-stone-50 hover:text-stone-900 active:scale-95 transition-all shadow-xs cursor-pointer"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>
@@ -95,7 +95,7 @@ export const ScenarioScroll: React.FC = () => {
       <div
         ref={scrollRef}
         id="scenario-scroll-container"
-        className="flex gap-5 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-8 py-4 snap-x snap-mandatory cursor-grab active:cursor-grabbing"
+        className="flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-8 py-2 sm:py-3 snap-x snap-mandatory cursor-grab active:cursor-grabbing"
       >
         {scenarios.map((item, idx) => (
           <motion.div

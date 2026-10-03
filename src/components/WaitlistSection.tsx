@@ -10,7 +10,7 @@ export const WaitlistSection: React.FC = () => {
   return (
     <section
       id="waitlist"
-      className="relative w-full py-24 sm:py-36 px-4 sm:px-6 overflow-hidden bg-white/70 border-t border-stone-200/50"
+      className="relative w-full py-14 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden bg-white/70 border-t border-stone-200/50"
     >
       {/* High-blur floating gradients background */}
       <div
@@ -33,10 +33,10 @@ export const WaitlistSection: React.FC = () => {
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-[#292524] mx-auto mb-8 flex items-center justify-center shadow-lg shadow-stone-900/10 group cursor-pointer"
+          className="w-14 h-14 sm:w-18 sm:h-18 rounded-3xl bg-[#292524] mx-auto mb-5 sm:mb-6 flex items-center justify-center shadow-lg shadow-stone-900/10 group cursor-pointer"
           onClick={() => playSoftChime(660, 0.8)}
         >
-          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#FFB7B2] flex items-center justify-center transition-transform duration-300 group-hover:scale-125">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#FFB7B2] flex items-center justify-center transition-transform duration-300 group-hover:scale-125">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
           </div>
         </motion.div>
@@ -47,10 +47,10 @@ export const WaitlistSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-normal text-[#292524] tracking-tight mb-4"
+          className="text-3xl sm:text-5xl md:text-6xl font-normal text-[#292524] tracking-tight mb-2.5 sm:mb-3"
         >
           Step into the{' '}
-          <span className="font-cursive text-5xl sm:text-6xl md:text-7xl text-[#FFB7B2]">living room</span>
+          <span className="font-cursive text-4xl sm:text-6xl md:text-7xl text-[#FFB7B2]">living room</span>
         </motion.h2>
 
         <motion.p
@@ -58,7 +58,7 @@ export const WaitlistSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-[#78716C] max-w-lg mx-auto mb-10 leading-relaxed"
+          className="text-base sm:text-lg text-[#78716C] max-w-lg mx-auto mb-6 sm:mb-8 leading-relaxed"
         >
           Softly is now available to install. Download the free app for Android or iOS and start your gentle journey today.
         </motion.p>
@@ -69,7 +69,7 @@ export const WaitlistSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 mb-8 max-w-sm sm:max-w-none mx-auto"
+          className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-7 max-w-sm sm:max-w-none mx-auto"
         >
           {/* Android */}
           <a

@@ -20,7 +20,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero-section"
-      className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 px-4 sm:px-6 flex flex-col items-center justify-center text-center overflow-hidden"
+      className="relative pt-20 sm:pt-28 md:pt-36 pb-10 sm:pb-16 md:pb-20 px-4 sm:px-6 flex flex-col items-center justify-center text-center overflow-hidden"
     >
       {/* Two large blurred background blobs at 60% opacity */}
       <div
@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#E8EFE8]/80 backdrop-blur-md border border-stone-200/60 mb-6 text-xs sm:text-sm font-medium text-[#292524] max-w-[92vw] text-center"
+        className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#E8EFE8]/80 backdrop-blur-md border border-stone-200/60 mb-3.5 sm:mb-5 text-xs sm:text-sm font-medium text-[#292524] max-w-[92vw] text-center"
       >
         <span className="w-2 h-2 rounded-full bg-[#FFB7B2] animate-pulse shrink-0"></span>
         <span className="tracking-wide">A digital living room for mindful living</span>
@@ -52,7 +52,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[32px] xs:text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-normal tracking-[-0.025em] text-[#292524] max-w-4xl leading-[1.12] sm:leading-[1.12] mb-6"
+        className="text-[32px] xs:text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-normal tracking-[-0.025em] text-[#292524] max-w-4xl leading-[1.12] sm:leading-[1.12] mb-3 sm:mb-4"
       >
         Reclaim your mind,{' '}
         <span className="font-cursive text-[44px] xs:text-5xl sm:text-7xl md:text-8xl text-[#e8908a] inline-block font-normal transform -rotate-2 hover:rotate-0 transition-transform duration-300">
@@ -66,7 +66,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[500px] text-[15px] sm:text-lg text-[#78716C] leading-relaxed font-normal mb-8 sm:mb-10 px-2"
+        className="max-w-[500px] text-[15px] sm:text-lg text-[#78716C] leading-relaxed font-normal mb-5 sm:mb-7 px-2"
       >
         No toxic streaks, flashing red badges, or dopamine loops. An intentional companion that lets you breathe, reflect, and put your phone down.
       </motion.p>
@@ -76,7 +76,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 w-full max-w-[320px] sm:max-w-md sm:justify-center mb-6 sm:mb-8"
+        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 w-full max-w-[320px] sm:max-w-md sm:justify-center mb-3.5 sm:mb-5"
       >
         {/* Android APK Download */}
         <a
@@ -116,7 +116,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-12 sm:mb-14"
+        className="mb-5 sm:mb-7"
       >
         <button
           id="hero-breathe-cta"
@@ -136,7 +136,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.45 }}
-        className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-10 text-xs text-[#78716C] pt-2 px-3"
+        className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-10 text-xs text-[#78716C] mb-5 sm:mb-7 px-3"
       >
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-stone-400" />
@@ -160,7 +160,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         animate={{ opacity: 0.6 }}
         whileHover={{ opacity: 1, y: 3 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="mt-14 sm:mt-16 p-2 rounded-full text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
+        className="p-1.5 rounded-full text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
       >
         <ArrowDown className="w-5 h-5 animate-bounce" />
       </motion.button>

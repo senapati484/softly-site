@@ -45,14 +45,14 @@ const testimonials: TestimonialItem[] = [
 
 export const DiaryTestimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 px-4 sm:px-6 relative bg-[#FAF8F3]/70 border-t border-stone-200/50 overflow-hidden">
+    <section id="testimonials" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6 relative bg-[#FAF8F3]/70 border-t border-stone-200/50 overflow-hidden">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+        <div className="text-center mb-7 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1.5">
             <Feather className="w-3.5 h-3.5 text-[#FFB7B2]" />
             <span>Community Reflections</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-2.5 sm:mb-4">
             Notes from the{' '}
             <span className="font-cursive text-4xl sm:text-6xl text-[#FFB7B2]">slow room</span>
           </h2>
@@ -62,7 +62,7 @@ export const DiaryTestimonials: React.FC = () => {
         </div>
 
         {/* Two-column grid for desktop, single for mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           {testimonials.map((item, idx) => (
             <motion.div
               key={item.id}

@@ -93,7 +93,7 @@ export const BreatheModal: React.FC<BreatheModalProps> = ({ isOpen, onClose }) =
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 20 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-lg bg-[#FDFCF8] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 border border-stone-200/80 shadow-2xl overflow-hidden z-10 text-center"
+          className="relative w-full max-w-lg bg-[#FDFCF8] rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 border border-stone-200/80 shadow-2xl overflow-hidden z-10 text-center"
         >
           {/* Ambient Blob */}
           <div
@@ -112,28 +112,28 @@ export const BreatheModal: React.FC<BreatheModalProps> = ({ isOpen, onClose }) =
               onClose();
             }}
             aria-label="Close modal"
-            className="absolute top-6 right-6 p-2 rounded-full text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors cursor-pointer"
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 rounded-full text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Top meta */}
-          <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="flex items-center justify-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-[#FFB7B2] animate-ping" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-stone-400">
               4-7-8 Parasympathetic Reset
             </span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-normal text-[#292524] tracking-tight mb-2">
+          <h3 className="text-xl sm:text-3xl font-normal text-[#292524] tracking-tight mb-1.5">
             A Mindful Pause
           </h3>
-          <p className="text-xs sm:text-sm text-stone-500 max-w-xs mx-auto mb-8">
+          <p className="text-xs sm:text-sm text-stone-500 max-w-xs mx-auto mb-4 sm:mb-6">
             Follow the gentle breathing circle to slow your pulse and calm your thoughts.
           </p>
 
           {/* Dynamic Breathing Circle */}
-          <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto mb-8 flex items-center justify-center">
+          <div className="relative w-44 h-44 sm:w-56 sm:h-56 mx-auto mb-4 sm:mb-6 flex items-center justify-center">
             {/* Outer animated soft rings */}
             <motion.div
               animate={{
@@ -157,24 +157,24 @@ export const BreatheModal: React.FC<BreatheModalProps> = ({ isOpen, onClose }) =
                 duration: phase === 'inhale' ? 4 : phase === 'hold' ? 0.3 : 8,
                 ease: 'easeInOut',
               }}
-              className="w-40 h-40 sm:w-44 sm:h-44 rounded-full bg-[#FFB7B2]/40 backdrop-blur-xs border border-[#FFB7B2]/60 flex flex-col items-center justify-center shadow-lg relative z-10"
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-[#FFB7B2]/40 backdrop-blur-xs border border-[#FFB7B2]/60 flex flex-col items-center justify-center shadow-lg relative z-10"
             >
-              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#FFB7B2] text-[#292524] flex flex-col items-center justify-center shadow-md">
-                <span className="text-xs uppercase font-semibold tracking-widest opacity-80">
+              <div className="w-22 h-22 sm:w-28 sm:h-28 rounded-full bg-[#FFB7B2] text-[#292524] flex flex-col items-center justify-center shadow-md">
+                <span className="text-[10px] sm:text-xs uppercase font-semibold tracking-widest opacity-80">
                   {phase}
                 </span>
-                <span className="text-3xl font-medium mt-0.5">{secondsLeft}s</span>
+                <span className="text-2xl sm:text-3xl font-medium mt-0.5">{secondsLeft}s</span>
               </div>
             </motion.div>
           </div>
 
           {/* Phase instruction text */}
-          <p className="text-base sm:text-lg font-medium text-[#292524] mb-8 h-8 flex items-center justify-center">
+          <p className="text-sm sm:text-base md:text-lg font-medium text-[#292524] mb-5 sm:mb-6 h-7 sm:h-8 flex items-center justify-center">
             {phaseInstructions[phase]}
           </p>
 
           {/* Bottom Bar: Pause/Resume, Sound Toggle, Cycle counter */}
-          <div className="flex items-center justify-between pt-6 border-t border-stone-200/60 text-xs text-stone-500">
+          <div className="flex items-center justify-between pt-4 sm:pt-6 border-t border-stone-200/60 text-xs text-stone-500">
             <button
               onClick={() => {
                 setIsActive(!isActive);

@@ -86,22 +86,22 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
   };
 
   return (
-    <section id="experience" className="py-20 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+    <section id="experience" className="py-12 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden">
       {/* Background ambient lighting halos */}
       <div
         aria-hidden="true"
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[600px] sm:h-[900px] bg-gradient-to-tr from-[#FFE4E1]/30 via-[#EFEDF4]/40 to-[#E8EFE8]/30 rounded-full blur-3xl -z-10 pointer-events-none"
       />
 
-      <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-        <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">
+      <div className="max-w-4xl mx-auto text-center mb-6 sm:mb-10">
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1.5 block">
           Dynamic Island & Gentle Notifications
         </span>
-        <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-5xl font-normal text-[#292524] tracking-tight mb-3 sm:mb-4">
           Unobtrusive, calm, and{' '}
           <span className="font-cursive text-4xl sm:text-6xl text-[#e8908a]">respectful</span>
         </h2>
-        <p className="max-w-xl mx-auto text-base sm:text-lg text-[#78716C] mb-8">
+        <p className="max-w-xl mx-auto text-base sm:text-lg text-[#78716C] mb-5 sm:mb-6">
           No flashing red badges or urgency prompts. See how Softly communicates through iOS Dynamic Island live activities and Android ambient lockscreens.
         </p>
 
@@ -206,7 +206,7 @@ export const AppExperiencePreview: React.FC<AppExperiencePreviewProps> = ({ onOp
       </AnimatePresence>
 
       {/* 3 Side-by-Side iPhone 16 Pro Mockups */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-4 xl:gap-6 max-w-7xl mx-auto pb-12">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-4 xl:gap-6 max-w-7xl mx-auto pb-6 sm:pb-8">
         
         {/* ========================================================= */}
         {/* LEFT IPHONE: Morning Pebble (Reflections & Soundscapes)    */}
